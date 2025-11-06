@@ -1,22 +1,21 @@
 // const mongoose=require("mongoose");
-const User = require("../dbschema/schema");
+const {User,blogs} = require("../dbschema/schema");
 const hashy = require("hashy");
 async function home(req, res) {
     try {
-        const { Fname, Lname, Email, password } = req.body;
+        const { Name, Email, password } = req.body;
         hashy.hash(password, function (err, hash) {
             if (err) {
                 return console.log(err);
             }
             console.log("generated password ", hash);
-            const newUser = new User({ Fname, Lname, Email, password: hash });
+            const newUser = new User({ Name, Email, password: hash });
             newUser.save();
             console.log(newUser);
             res.send({
                 status: 200,
                 message: "User added successfully",
             });
-            console.log(Fname)
 
         })
         // res.send("HELLO WORLD")
@@ -31,17 +30,24 @@ async function login(req, res) {
     try {
         const { Email, password } = req.body;
         const check = await User.findOne({ Email });
-        console.log(check)  
         hashy.verify(password, check.password, function (error, success) {
             if (error) {
                 return console.error(error);
             }
 
             if (success) {
-                res.send("you are now authenticated!");
+                res.send({
+                    status: 200,
+                    message: "server code is failed"
+                })
             } else {
-                res.send("invalid password!");
+                 res.send({
+                    status: 404,
+                    message: "invalid Email or Password!"
+                })
+             
             }
+            res.send("invalid")
         });
         console.log("user login successfuly");
     } catch (err) {
@@ -52,4 +58,7 @@ async function login(req, res) {
     }
 }
 
-module.exports = { home, login }
+function createBlog (req,res){
+    res.send("aaffdadfdf")
+}
+module.exports = { home, login ,createBlog }

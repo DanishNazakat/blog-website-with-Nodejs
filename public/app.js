@@ -2,17 +2,15 @@
 let submitBtn = document.getElementById('submitBtn');
 
 submitBtn.addEventListener('click', async () => {
-    let Fname = document.getElementById('Fname').value;
-    let Lname = document.getElementById('Lname').value;
+    let Name = document.getElementById('Name').value;
     let Email = document.getElementById('Email').value;
     let Password = document.getElementById('Password').value;
 
-    console.log("Event Fired:", Fname, Lname, Email, Password);
+    console.log("Event Fired:", Name, Email, Password);
 
     try {
         const res = await axios.post('http://localhost:3000/api/', {
-            Fname,
-            Lname,
+            Name,
             Email,
             password: Password
         });
@@ -23,6 +21,7 @@ submitBtn.addEventListener('click', async () => {
     } catch (err) {
         alert("Signup Failed")
         console.error("Error:", err);
+        
     }
 });
 

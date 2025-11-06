@@ -1,11 +1,8 @@
 const mongoose=require("mongoose");
 
 const UserData=new mongoose.Schema({
-    Fname:{
-       type:String,
-       required:true 
-    },
-    Lname:{
+
+    Name:{
         type:String,
         required:true
     },
@@ -20,5 +17,21 @@ const UserData=new mongoose.Schema({
 })
 
 
+let blog = new mongoose.Schema({
+    title :{
+        type: String,
+        required : true
+    },
+     authorName :{
+        type: String,
+        required : true
+    },
+     blogContent :{
+        type: String,
+        required : true
+    }
+})
+
 let User=mongoose.model("userSignupData",UserData);
-module.exports=User;
+let blogs = mongoose.model("blogs",blog)
+module.exports={User,blogs};
