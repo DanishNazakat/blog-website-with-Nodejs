@@ -18,7 +18,7 @@ const UserData=new mongoose.Schema({
 
 
 let blog = new mongoose.Schema({
-    title :{
+    tittle :{
         type: String,
         required : true
     },

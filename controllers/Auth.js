@@ -1,5 +1,6 @@
 // const mongoose=require("mongoose");
-const {User,blogs} = require("../dbschema/schema");
+const { BaseCollection } = require("mongoose");
+const User = require("../dbschema/schema");
 const hashy = require("hashy");
 async function home(req, res) {
     try {
@@ -58,7 +59,15 @@ async function login(req, res) {
     }
 }
 
-function createBlog (req,res){
-    res.send("aaffdadfdf")
-}
-module.exports = { home, login ,createBlog }
+    function createBlog (req,res){
+        
+        try{
+           const {tittle,authorName,blogContent}= req.body;
+           console.log(tittle,authorName,blogContent);
+           
+        }catch(err){
+            console.log("function is not ",err)
+
+        }
+    }
+module.exports = { home, login,createBlog  }

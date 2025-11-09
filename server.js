@@ -2,7 +2,7 @@ let express = require('express');
 const cors = require('cors');
 let path = require('path')
 let app = express();
-const roter=require("./Router/route");
+const route=require("./Router/route");
 app.use(express.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
@@ -21,7 +21,10 @@ mongoose.connect("mongodb+srv://danishnazakat:LwkFe3qiBwUzl12H@cluster0.rpvrbpd.
     console.log("Error connectiong to mongoDB",err)
 })
 
-app.use("/api",roter);
+
+// app.use("/api",roter );
+app.use("/api",route);
+
 
 
 
@@ -31,5 +34,4 @@ app.listen(PORT,()=>{
 })
 
 
-
-
+  

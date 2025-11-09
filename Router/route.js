@@ -3,8 +3,10 @@ const router=express.Router();
 const {home , login , createBlog}=require("../controllers/Auth");
 router.post("/",home);
 router.post("/login",login);
-// router.get("/createBlog",createBlog);
-router.get("/createBlog", createBlog);
+router.post("/blog",createBlog);
+
+
+
 
 
 module.exports=router;
