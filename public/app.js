@@ -26,10 +26,3 @@ submitBtn.addEventListener('click', async () => {
 });
 
 
-
-
-
-
-
-// login function   
-

@@ -1,6 +1,6 @@
 // const mongoose=require("mongoose");
 const { BaseCollection } = require("mongoose");
-const User = require("../dbschema/schema");
+const {User , blogs} = require("../dbschema/schema");
 const hashy = require("hashy");
 async function home(req, res) {
     try {
@@ -64,7 +64,15 @@ async function login(req, res) {
         try{
            const {tittle,authorName,blogContent}= req.body;
            console.log(tittle,authorName,blogContent);
-           
+
+           let newblogs =  new blogs ({tittle, authorName, blogContent});
+           newblogs.save();
+           console.log(newblogs);
+
+           res.send({
+            status : 200,
+            message : "blog added Successfulluy"
+           })
         }catch(err){
             console.log("function is not ",err)
 
